@@ -3,6 +3,7 @@ class Invoice
   def initialize
     @watermelon_subtotal
     @pineapple_subtotal
+    @rockmelon_subtotal
   end
 
   def get_input(input, small_pack, fruit)
@@ -19,7 +20,8 @@ class Invoice
       calculate_watermelons(input)
     elsif fruit == "pineapples"
       calculate_pineapples(input)
-    else
+    elsif fruit == "rockmelons"
+      calculate_rockmelons(input)
     end
   end
 
@@ -78,17 +80,51 @@ class Invoice
     puts "#{quantity} Pineapples $#{large_packs + medium_packs + small_packs}"
   end
 
+  def calculate_rockmelons(quantity)
+    remainder = quantity
+    large_count = medium_count = small_count = 0
+    large = 9
+    medium = 5
+    small = 3
+
+    while remainder > 0
+      if remainder >= large
+        large_count += 1
+        remainder = remainder - large
+      elsif remainder.between?(medium, (large - 1))
+        medium_count += 1
+        remainder = remainder - medium
+      elsif remainder.between?(small, (medium - 1))
+        small_count += 1
+        remainder = remainder - small
+      elsif remainder < small
+        break
+      end
+    end
+
+    large_packs = large_count * 16.99
+    medium_packs = medium_count * 9.95
+    small_packs = small_count * 5.95
+    @rockmelon = large_packs + medium_packs + small_packs
+
+    puts "#{quantity} Rockmelons $#{large_packs + medium_packs + small_packs}"
+  end
+
 end
 
 puts "How many watermelons? (must be 3 or more)"
-watermelons = gets.chomp.to_i
+qty_watermelons = gets.chomp.to_i
 
 puts "How many pineapples? (must be 2 or more)"
-pineapples = gets.chomp.to_i
+qty_pineapples = gets.chomp.to_i
+
+puts "How many rockmelons? (must be 3 or more)"
+qty_rockmelons = gets.chomp.to_i
 
 watermelon_small = rockmelon_small = 3
 pineapple_small = 2
 
 order = Invoice.new
-order.get_input(watermelons, watermelon_small, "watermelons")
-order.get_input(pineapples, pineapple_small, "pineapples")
+order.get_input(qty_watermelons, watermelon_small, "watermelons")
+order.get_input(qty_pineapples, pineapple_small, "pineapples")
+order.get_input(qty_rockmelons, rockmelon_small, "rockmelons")
