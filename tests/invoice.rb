@@ -44,7 +44,7 @@ class Invoice
     end
   end
 
-  def calculate_subtotal(pricing, quantity, fruit)
+  def calculate_subtotals(pricing, quantity, fruit)
     if fruit == "watermelons"
       large = pricing[:large][:count] * pricing[:large][:price]
       small = pricing[:small][:count] * pricing[:small][:price]
@@ -61,7 +61,7 @@ class Invoice
       medium = pricing[:medium][:count] * pricing[:medium][:price]
       small = pricing[:small][:count] * pricing[:small][:price]
       @rockmelon_subtotal = large + medium + small
-      puts "#{quantity} #{fruit.capitalize} $#{@pineapple_subtotal}"
+      puts "#{quantity} #{fruit.capitalize} $#{@rockmelon_subtotal}"
     end
   end
 
@@ -99,7 +99,7 @@ class Invoice
       }
     }
 
-    calculate_subtotal(pricing, quantity, "watermelons")
+    calculate_subtotals(pricing, quantity, "watermelons")
     calculate_packs(pricing)
   end
 
@@ -143,7 +143,7 @@ class Invoice
       }
     }
 
-    calculate_subtotal(pricing, quantity, "pineapples")
+    calculate_subtotals(pricing, quantity, "pineapples")
     calculate_packs(pricing)
   end
 
@@ -187,7 +187,7 @@ class Invoice
       }
     }
 
-    calculate_subtotal(pricing, quantity, "rockmelons")
+    calculate_subtotals(pricing, quantity, "rockmelons")
     calculate_packs(pricing)
   end
 
