@@ -3,7 +3,7 @@ require 'minitest/reporters'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
-require_relative 'invoice'
+require_relative '../invoicing/invoice'
 
 class InvoiceTest < MiniTest::Test
 
