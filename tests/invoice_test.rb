@@ -19,4 +19,16 @@ class InvoiceTest < MiniTest::Test
     assert_equal false, input.is_a?(Integer)
   end
 
+  def test_is_minimum_quantity
+    watermelon_small_pack = 3
+    input = 3
+    assert_equal true, input >= watermelon_small_pack
+  end
+
+  def test_is_not_minimum_quantity
+    watermelon_small_pack = 3
+    input = 1
+    assert_equal true, input < watermelon_small_pack
+  end
+
 end
