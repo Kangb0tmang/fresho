@@ -13,7 +13,7 @@ class Invoice
 
   def get_input(input, small_pack, fruit)
     while input < small_pack
-      puts "Please enter 3 or more"
+      puts "Please enter #{small_pack} or more for #{fruit}"
       input = gets.chomp.to_i
     end
 
