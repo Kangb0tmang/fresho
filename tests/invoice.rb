@@ -1,14 +1,11 @@
 class Invoice
 
   def initialize
-    @watermelon_subtotal
-    @pineapple_subtotal
-    @rockmelon_subtotal
+    @subtotal
   end
 
   def get_total
-    total = @watermelon_subtotal + @pineapple_subtotal + @rockmelon_subtotal
-    puts "Total $#{total.round(2)}"
+    puts "Total $#{@subtotal.round(2)}"
   end
 
   def get_input(input, small_pack, fruit)
@@ -48,20 +45,14 @@ class Invoice
     if fruit == "watermelons"
       large = pricing[:large][:count] * pricing[:large][:price]
       small = pricing[:small][:count] * pricing[:small][:price]
-      @watermelon_subtotal = large + small
-      puts "#{quantity} #{fruit.capitalize} $#{@watermelon_subtotal}"
-    elsif fruit == "pineapples"
+      @subtotal = large + small
+      puts "#{quantity} #{fruit.capitalize} $#{large + small}"
+    elsif fruit == "pineapples" || fruit == "rockmelons"
       large = pricing[:large][:count] * pricing[:large][:price]
       medium = pricing[:medium][:count] * pricing[:medium][:price]
       small = pricing[:small][:count] * pricing[:small][:price]
-      @pineapple_subtotal = large + medium + small
-      puts "#{quantity} #{fruit.capitalize} $#{@pineapple_subtotal}"
-    elsif fruit == "rockmelons"
-      large = pricing[:large][:count] * pricing[:large][:price]
-      medium = pricing[:medium][:count] * pricing[:medium][:price]
-      small = pricing[:small][:count] * pricing[:small][:price]
-      @rockmelon_subtotal = large + medium + small
-      puts "#{quantity} #{fruit.capitalize} $#{@rockmelon_subtotal}"
+      @subtotal = @subtotal + large + medium + small
+      puts "#{quantity} #{fruit.capitalize} $#{large + medium + small}"
     end
   end
 
