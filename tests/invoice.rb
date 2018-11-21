@@ -193,17 +193,17 @@ class Invoice
 
 end
 
-puts "How many watermelons? (must be 3 or more)"
-qty_watermelons = gets.chomp.to_i
-
-puts "How many pineapples? (must be 2 or more)"
-qty_pineapples = gets.chomp.to_i
-
-puts "How many rockmelons? (must be 3 or more)"
-qty_rockmelons = gets.chomp.to_i
-
 watermelon_small = rockmelon_small = 3
 pineapple_small = 2
+
+puts "How many watermelons? (must be #{watermelon_small} or more)"
+qty_watermelons = gets.chomp.to_i
+
+puts "How many pineapples? (must be #{pineapple_small} or more)"
+qty_pineapples = gets.chomp.to_i
+
+puts "How many rockmelons? (must be #{rockmelon_small} or more)"
+qty_rockmelons = gets.chomp.to_i
 
 order = Invoice.new
 order.get_input(qty_watermelons, watermelon_small, "watermelons")
