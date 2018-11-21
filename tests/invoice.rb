@@ -6,6 +6,11 @@ class Invoice
     @rockmelon_subtotal
   end
 
+  def get_total
+    total = @watermelon_subtotal + @pineapple_subtotal + @rockmelon_subtotal
+    puts "Total $#{total.round(2)}"
+  end
+
   def get_input(input, small_pack, fruit)
     while input < small_pack
       puts "Please enter 3 or more"
@@ -105,7 +110,7 @@ class Invoice
     large_packs = large_count * 16.99
     medium_packs = medium_count * 9.95
     small_packs = small_count * 5.95
-    @rockmelon = large_packs + medium_packs + small_packs
+    @rockmelon_subtotal = large_packs + medium_packs + small_packs
 
     puts "#{quantity} Rockmelons $#{large_packs + medium_packs + small_packs}"
   end
@@ -128,3 +133,4 @@ order = Invoice.new
 order.get_input(qty_watermelons, watermelon_small, "watermelons")
 order.get_input(qty_pineapples, pineapple_small, "pineapples")
 order.get_input(qty_rockmelons, rockmelon_small, "rockmelons")
+order.get_total()
